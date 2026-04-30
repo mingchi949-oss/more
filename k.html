@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Digital Memory Box</title>
+    <link rel="stylesheet" href="./sy.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Every Moment With You ❤️</h1>
+      <p>A collection of my favorite chapters in our story.</p>
+    </header>
+
+    <main class="memory-grid">
+      <div class="polaroid">
+        <img
+          src="https://images.unsplash.com/photo-1516589174184-c6852661bbf3?w=800"
+          alt="The day we met"
+        />
+        <div class="caption">The day we met</div>
+      </div>
+      <div class="polaroid">
+        <img
+          src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800"
+          alt="Our favorite walk"
+        />
+        <div class="caption">Our favorite walk</div>
+      </div>
+      <div class="polaroid">
+        <img
+          src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800"
+          alt="Lazy Sundays"
+        />
+        <div class="caption">Lazy Sundays</div>
+      </div>
+      <div class="polaroid">
+        <img
+          src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800"
+          alt="Lazy Sundays"
+        />
+        <div class="caption">Lazy Sundays</div>
+      </div>
+      <div class="polaroid">
+        <img
+          src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800"
+          alt="Our favorite walk"
+        />
+        <div class="caption">Our favorite walk</div>
+      </div>
+      <div class="polaroid">
+        <img
+          src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800"
+          alt="Our favorite walk"
+        />
+        <div class="caption">Our favorite walk</div>
+      </div>
+      <div class="polaroid">
+        <img
+          src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800"
+          alt="Our favorite walk"
+        />
+        <div class="caption">Our favorite walk</div>
+      </div>
+    </main>
+
+    <div id="myModal" class="modal">
+      <span class="close-btn">&times;</span>
+      <img class="modal-content" id="img01" />
+      <div id="modal-caption"></div>
+    </div>
+
+    <script>
+      const modal = document.getElementById("myModal");
+      const modalImg = document.getElementById("img01");
+      const captionText = document.getElementById("modal-caption");
+      const closeBtn = document.querySelector(".close-btn");
+
+      const images = document.querySelectorAll(".polaroid img");
+
+      images.forEach((img) => {
+        img.onclick = function () {
+          modal.style.display = "flex";
+          modalImg.src = this.src;
+          captionText.innerHTML = this.alt;
+        };
+      });
+
+      closeBtn.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>
