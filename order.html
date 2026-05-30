@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Complete Your Order</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    style="
+      background: #0a0a0a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    "
+  >
+    <div
+      class="product-card"
+      style="width: 100%; max-width: 500px; text-align: left; background: #111"
+    >
+      <h2 style="color: var(--accent); margin-bottom: 20px">Checkout</h2>
+
+      <div
+        id="cart-list"
+        style="margin-bottom: 20px; max-height: 300px; overflow-y: auto"
+      >
+        <!-- Items will appear here -->
+      </div>
+
+      <hr style="border: 0.5px solid #222; margin-bottom: 20px" />
+
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 20px;
+        "
+      >
+        <span style="font-weight: bold">Total Bill:</span>
+        <span id="cart-total" style="color: var(--accent); font-weight: bold"
+          >$0.00</span
+        >
+      </div>
+
+      <form id="checkoutForm">
+        <input
+          type="tel"
+          id="customerPhone"
+          placeholder="Your Phone Number"
+          required
+          style="
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #222;
+            color: white;
+          "
+        />
+        <input
+          type="text"
+          id="customerLocation"
+          placeholder="Delivery Location or Table Number"
+          required
+          style="
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #222;
+            color: white;
+          "
+        />
+        <button
+          type="button"
+          onclick="useMyLocation(event)"
+          style="
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            padding: 0;
+            display: block;
+          "
+        >
+          📍 Use My Current Location (Google Maps)
+        </button>
+        <button type="submit" class="buy-btn" style="margin-bottom: 10px">
+          CONFIRM ORDER
+        </button>
+      </form>
+
+      <a
+        href="web.html"
+        style="
+          display: block;
+          text-align: center;
+          color: #666;
+          text-decoration: none;
+          font-size: 0.9rem;
+        "
+      >
+        ← Back to Menu
+      </a>
+    </div>
+
+    <script src="./weborder.js"></script>
+  </body>
+</html>

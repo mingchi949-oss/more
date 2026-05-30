@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MinG developmant test</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="main-shop">
+      <nav class="main-nav">
+        <div class="logo">DEVELOP<span>BYMING</span></div>
+        <div class="logo">WEL<span>COME</span></div>
+        <div class="social-links">
+          <a
+            href="order.html"
+            class="social-icon"
+            style="
+              width: auto;
+              padding: 0 15px;
+              border-radius: 20px;
+              text-decoration: none;
+            "
+          >
+            <i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="social-icon fb">
+            <i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://t.me" target="_blank" class="social-icon tg"
+            ><i class="fab fa-telegram-plane"></i
+          ></a>
+          <a href="https://instagram.com" target="_blank" class="social-icon ig"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.tiktok.com"
+            target="_blank"
+            class="social-icon tt"
+          >
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </nav>
+      <div class="shop-layout">
+        <aside class="brand-sidebar">
+          <h3>Search</h3>
+          <div style="position: relative">
+            <input
+              type="text"
+              id="brandSearch"
+              onkeyup="searchBrandsAll()"
+              placeholder="Search (e.g. Matcha...)"
+              style="padding-right: 35px"
+            />
+            <span
+              id="clear-search-btn"
+              onclick="clearSearch()"
+              style="
+                position: absolute;
+                right: 10px;
+                top: 8px;
+                cursor: pointer;
+                color: #888;
+                font-size: 1.5rem;
+                display: none;
+                user-select: none;
+              "
+              >&times;</span
+            >
+          </div>
+          <div id="brand-list-container">
+            <!--search-->
+
+            <div
+              class="brand-item"
+              id="btn-Matcha"
+              onclick="setSearchAndFilter('Matcha')"
+            >
+              Matcha
+            </div>
+            <div
+              class="brand-item"
+              id="btn-Coffee"
+              onclick="setSearchAndFilter('Coffee')"
+            >
+              Coffee
+            </div>
+            <div
+              class="brand-item"
+              id="btn-Tea"
+              onclick="setSearchAndFilter('Tea')"
+            >
+              Tea
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!--here-->
+    <main>
+      <div class="moto-gallery product-card">
+        <!-- Added class "img-container" here -->
+        <div class="img-container">
+          <span class="badge hot-sale">HOT</span>
+          <img src="./Matcha.jpg" alt="Moto" />
+        </div>
+
+        <h1>Matcha Latte</h1>
+        <p>$1.25</p>
+
+        <button onclick="addToOrder('Matcha Latte', 1.25)" class="buy-btn">
+          ORDER
+        </button>
+      </div>
+
+      <div class="moto-gallery product-card">
+        <div>
+          <img src="./matcha stt.jpg" alt="Moto" />
+        </div>
+
+        <h1>Strawberry Matcha</h1>
+        <p>$2.50</p>
+
+        <button onclick="addToOrder('Strawberry Matcha', 2.5)" class="buy-btn">
+          ORDER
+        </button>
+      </div>
+      <div class="moto-gallery product-card">
+        <!-- Added class "img-container" here -->
+        <div class="img-container">
+          <span class="badge hot-sale">HOT</span>
+          <img src="./ice latte.jpg" alt="Moto" />
+        </div>
+
+        <h1>Ice latte Coffee</h1>
+        <p>$1.25</p>
+
+        <button onclick="addToOrder('Ice latte Coffee', 1.25)" class="buy-btn">
+          ORDER
+        </button>
+      </div>
+      <div class="moto-gallery product-card">
+        <div>
+          <img src="./americano coffee.jpg" alt="Moto" />
+        </div>
+
+        <h1>Ice Americano coffee</h1>
+        <p>$1.25</p>
+
+        <button
+          onclick="addToOrder('Ice Americano coffee', 1.25)"
+          class="buy-btn"
+        >
+          ORDER
+        </button>
+      </div>
+      <div class="moto-gallery product-card">
+        <div>
+          <img src="./lemom tea.jpg" alt="Moto" />
+        </div>
+
+        <h1>Lemon Tea</h1>
+        <p>$1.25</p>
+
+        <button onclick="addToOrder('Lemon Tea', 1.25)" class="buy-btn">
+          ORDER
+        </button>
+      </div>
+      <div class="moto-gallery product-card">
+        <div>
+          <img src="./tea lemon.jpg" alt="Moto" />
+        </div>
+        <h1>Lemon Tea</h1>
+        <p>$1.25</p>
+
+        <button onclick="addToOrder('Lemon Tea High', 1.25)" class="buy-btn">
+          ORDER
+        </button>
+      </div>
+    </main>
+
+    <script src="./web.js"></script>
+  </body>
+</html>

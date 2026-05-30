@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Order Done!</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+        background-color: #f4fdf4;
+      }
+      .box {
+        border: 2px solid #2ecc71;
+        display: inline-block;
+        padding: 30px;
+        background: white;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1 style="color: #2ecc71">Order Successful! 🎉</h1>
+      <p>Thank you for your purchase.</p>
+      <p id="order-details">We are preparing your coffee now...</p>
+      <br />
+      <a href="./web.html">Go Back to Shop</a>
+    </div>
+
+    <script>
+      // This JavaScript reads the URL to see what the customer bought
+      const urlParams = new URLSearchParams(window.location.search);
+      const item = urlParams.get("item");
+      const qty = urlParams.get("qty");
+
+      if (item && qty) {
+        document.getElementById("order-details").innerText =
+          `You ordered: ${qty}x ${item.replace("-", " ")}. We are preparing it now!`;
+      }
+    </script>
+  </body>
+</html>

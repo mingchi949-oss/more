@@ -1,0 +1,539 @@
+:root {
+  --primary: #ff3e3e;
+  --accent: #00ffcc;
+  --bg: #0a0a0a;
+  --card: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+  border: 2px solid #000;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* 2. Main Shop Layout */
+#main-shop {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid #111;
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+.logo span {
+  color: var(--accent);
+}
+
+/* Social Icons Layout */
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+.social-icon {
+  width: 38px;
+  height: 38px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 0.9rem;
+}
+.fb:hover {
+  background: #1877f2;
+  border-color: #1877f2;
+  box-shadow: 0 0 10px #1877f2;
+}
+.tg:hover {
+  background: #229ed9;
+  border-color: #229ed9;
+  box-shadow: 0 0 10px #229ed9;
+}
+.ig:hover {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366);
+  border-color: transparent;
+  box-shadow: 0 0 10px #dc2743;
+}
+.tt:hover {
+  background: linear-gradient(45deg, #0d0d0c, #000000, #090808, #171315);
+  border-color: transparent;
+  box-shadow: 0 0 10px #ef0505;
+}
+
+/* Sidebar & Content Layout Grid */
+.shop-layout {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.brand-sidebar {
+  width: 700px;
+  border-right: 0px solid #ffffff;
+  padding-right: 20px;
+  flex-shrink: 0;
+}
+.brand-sidebar h3 {
+  font-size: 0.8rem;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+/* Search Input */
+#brandSearch {
+  width: 100%;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: #5c5a5a;
+  margin-bottom: 25px;
+  transition: 0.3s;
+}
+#brandSearch:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+/* Container styling for a neat horizontal layout */
+#brand-list-container {
+  display: flex;
+  gap: 12px;
+  padding: 15px 5px;
+  overflow-x: auto; /* Allows smooth scrolling on mobile if items overflow */
+  white-space: nowrap;
+}
+
+/* Base button style */
+.brand-item {
+  display: inline-block;
+  padding: 10px 22px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #555;
+  background-color: #f5f5f7;
+  border: 1px solid #e5e5ea;
+  border-radius: 30px; /* Pill-shaped */
+  cursor: pointer;
+  transition: all 0.25s ease; /* Makes animations smooth */
+  user-select: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+/* Hover Effect: Gentle lift & shadow */
+.brand-item:hover {
+  color: #000;
+  background-color: #fff;
+  border-color: #b0b0b5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Click Effect: Tiny press down feel */
+.brand-item:active {
+  transform: translateY(0);
+}
+
+/* Active State: The look when selected */
+.brand-item.active {
+  color: #fff;
+  background-color: #1c1c1e; /* Sleek dark neutral */
+  border-color: #1c1c1e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+@media (max-width: 850px) {
+  .shop-layout {
+    flex-direction: column;
+  }
+  .brand-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #111;
+  }
+}
+/* 1. Make the image container the reference point */
+.img-container {
+  position: relative;
+  display: inline-block;
+  width: 100%; /* Adjust based on your design */
+}
+
+/* 2. Style the badge */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff3838; /* Vibrant red/orange hot color */
+  color: white;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+  z-index: 10;
+}
+
+/* Optional: Flame icon effect using CSS if you want it spicy */
+.hot-sale::before {
+  content: "🔥 ";
+}
+/* Show class for JS */
+.show {
+  display: block;
+}
+
+main {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.product-card {
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 20px;
+  width: 400px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(5px);
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+  box-shadow: 0 15px 35px rgba(0, 255, 204, 0.15);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+
+.product-card:hover img {
+  transform: scale(1.02);
+}
+
+h1 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+}
+
+.buy-btn {
+  background: linear-gradient(45deg, var(--accent), #00ccff);
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.buy-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--accent);
+  filter: brightness(1.1);
+}
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.modal-content {
+  max-width: 400px;
+  max-height: 70%;
+  background: #111 !important;
+  border: 1px solid var(--accent) !important;
+  box-shadow: 0 0 40px rgba(0, 255, 204, 0.1);
+}
+
+.nav-btns {
+  margin-top: 20px;
+}
+
+.nav-btns button {
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.close {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+.moto-gallery {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.big-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 1px solid #333;
+  transition: 0.5s;
+}
+
+.thumbnail-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.thumb {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.6;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.thumb:hover,
+.thumb.active {
+  opacity: 1;
+  border-color: #00ffcc; /* Your cool teal color */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000000;
+  color: #ffffff;
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+
+.logo {
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+main {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-card {
+  text-align: center;
+  border: 1px solid #333;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+p {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.buy-btn {
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.buy-btn:hover {
+  background: #ccc;
+}
+
+button {
+  background: none;
+  color: white;
+  border: 1px solid white;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+#intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: "Courier New", Courier, monospace;
+  transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1); /* Slides away beautifully */
+}
+
+.glitch-wrapper {
+  text-align: center;
+}
+
+.glitch-text {
+  color: #ff3e3e;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+}
+
+.sub-text {
+  color: #ffffff;
+  margin-bottom: 50px;
+}
+
+.bypass-btn {
+  background: none;
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
+  padding: 12px 24px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+}
+
+.bypass-btn:hover {
+  background: #00ffcc;
+  color: #000;
+  box-shadow: 0 0 20px #00ffcc;
+  transform: scale(1.05);
+}
+
+/* Styles for the cart modal items and remove button */
+.cart-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-right: 5px; /* Add some padding to the right */
+}
+
+.cart-item-row p {
+  margin-bottom: 0; /* Remove default paragraph margin */
+  color: white; /* Ensure text color is white */
+}
+
+.remove-item-btn {
+  background: none;
+  border: 1px solid #ff3e3e; /* Red border for remove button */
+  color: #ff3e3e; /* Red text for remove button */
+  padding: 3px 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+.remove-item-btn:hover {
+  background-color: #ff3e3e;
+  color: white;
+}
+.order-btn {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.order-btn:hover {
+  background-color: #218838;
+}
