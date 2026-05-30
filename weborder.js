@@ -87,6 +87,7 @@ document
 
     const phone = document.getElementById("customerPhone").value;
     const location = document.getElementById("customerLocation").value;
+    const photoFile = document.getElementById("customerPhoto")?.files[0];
 
     // 1. Build the list text loop for Telegram
     let itemsText = "";
@@ -95,7 +96,7 @@ document
     cart.forEach((item) => {
       const cost = item.price * item.qty;
       totalCost += cost;
-      itemsText += `☕ ${item.qty}x *${item.name}* (${item.sugar}) - $${cost.toFixed(2)}\n`;
+      itemsText += `☕ ${item.qty}x *${item.name}* (${item.sugar || "100%"}) - $${cost.toFixed(2)}\n`;
     });
 
     // 2. Create the Telegram text string
@@ -107,9 +108,8 @@ document
       `💰 *Total Bill:* $${totalCost.toFixed(2)}\n` +
       `⏰ *Status:* Preparing...`;
 
-    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    // 3. Send the entire order to Telegram
-    fetch(telegramUrl, {
+    let telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    let requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -117,7 +117,25 @@ document
         text: message,
         parse_mode: "Markdown",
       }),
-    })
+    };
+
+    // If a photo is attached, use sendPhoto with FormData
+    if (photoFile) {
+      telegramUrl = `https://api.telegram.org/bot${botToken}/sendPhoto`;
+      const formData = new FormData();
+      formData.append("chat_id", chatId);
+      formData.append("photo", photoFile);
+      formData.append("caption", message);
+      formData.append("parse_mode", "Markdown");
+
+      requestOptions = {
+        method: "POST",
+        body: formData, // Browser sets Content-Type to multipart/form-data automatically
+      };
+    }
+
+    // 3. Send the entire order to Telegram
+    fetch(telegramUrl, requestOptions)
       .then((response) => {
         if (response.ok) {
           localStorage.removeItem("coffeeCart");
