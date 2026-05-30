@@ -47,6 +47,49 @@
         >
       </div>
 
+      <!-- Shop Location Display -->
+      <div
+        style="
+          margin-bottom: 25px;
+          padding: 15px;
+          background: rgba(0, 255, 204, 0.05);
+          border-radius: 12px;
+          border: 1px solid rgba(0, 255, 204, 0.2);
+        "
+      >
+        <h4
+          style="
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+          "
+        >
+          Our Shop Location
+        </h4>
+        <p style="margin: 0; font-size: 0.9rem; color: #eee; line-height: 1.4">
+          123 Barista Street,<br />
+          Coffee Neighborhood, City 12345
+        </p>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=123+Barista+Street+Coffee+City"
+          target="_blank"
+          style="
+            color: var(--accent);
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            font-weight: bold;
+          "
+        >
+          <span>📍</span> View on Google Maps
+        </a>
+      </div>
+
       <form id="checkoutForm">
         <input
           type="tel"
@@ -66,34 +109,18 @@
         <input
           type="text"
           id="customerLocation"
-          placeholder="Delivery Location or Table Number"
+          placeholder="Delivery Address"
           required
           style="
             width: 100%;
             padding: 12px;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
             border-radius: 8px;
             border: 1px solid #333;
             background: #222;
             color: white;
           "
         />
-        <button
-          type="button"
-          onclick="useMyLocation(event)"
-          style="
-            background: none;
-            border: none;
-            color: var(--accent);
-            cursor: pointer;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            padding: 0;
-            display: block;
-          "
-        >
-          📍 Use My Current Location (Google Maps)
-        </button>
         <button type="submit" class="buy-btn" style="margin-bottom: 10px">
           CONFIRM ORDER
         </button>

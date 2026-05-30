@@ -67,35 +67,6 @@ function updateCartUI() {
   cartTotal.innerText = `Total: $${totalCost.toFixed(2)}`;
 }
 
-// Function to get user coordinates and generate a Google Maps link
-function useMyLocation(event) {
-  const btn = event.currentTarget;
-  if (!navigator.geolocation) {
-    alert("Geolocation is not supported by your browser.");
-    return;
-  }
-
-  const originalText = btn.innerHTML;
-  btn.innerHTML = "⌛ Locating...";
-
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-      // Generate Google Maps query link
-      document.getElementById("customerLocation").value =
-        `https://www.google.com/maps?q=${lat},${lng}`;
-      btn.innerHTML = "✅ Location Set!";
-    },
-    (error) => {
-      alert(
-        "Unable to get location. Please allow location access or type manually.",
-      );
-      btn.innerHTML = originalText;
-    },
-  );
-}
-
 // Load the cart display automatically when the order page opens
 updateCartUI();
 
