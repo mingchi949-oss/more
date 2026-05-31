@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>MinG developmant test</title>
+    <title>Welcome to Brown Coffee</title>
     <link rel="stylesheet" href=".//webstyle.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap"
@@ -16,7 +16,7 @@
   <body>
     <div id="main-shop">
       <nav class="main-nav">
-        <div class="logo">DEVELOP<span>BYMING</span></div>
+        <div class="logo">BROWN<span>COFFEE</span></div>
         <div class="logo">WEL<span>COME</span></div>
         <div class="social-links">
           <a
@@ -120,46 +120,118 @@
                 letter-spacing: 1px;
               "
             >
-              Our Shop Location
+              Our Shop Locations
             </h4>
-            <p
-              style="
-                margin: 0;
-                font-size: 0.9rem;
-                color: #eee;
-                line-height: 1.4;
-              "
-            >
-              123 Barista Street,<br />
-              Coffee Neighborhood, City 12345
-            </p>
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=123+Barista+Street+Coffee+City"
-              target="_blank"
-              style="
-                color: var(--accent);
-                font-size: 0.85rem;
-                text-decoration: none;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                margin-top: 10px;
-                font-weight: bold;
-              "
-            >
-              <span>📍</span> View on Google Maps
-            </a>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px">
+              <div style="flex: 1; min-width: 180px; margin-bottom: 15px">
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 0.9rem;
+                    color: #eee;
+                    line-height: 1.4;
+                  "
+                >
+                  123 Barista Street,<br />
+                  Coffee Neighborhood, City 12345
+                </p>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=123+Barista+Street+Coffee+City"
+                  target="_blank"
+                  style="
+                    color: var(--accent);
+                    font-size: 0.85rem;
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                    font-weight: bold;
+                  "
+                >
+                  <span>📍</span> View on Google Maps
+                </a>
+              </div>
+              <div style="flex: 1; min-width: 180px; margin-bottom: 15px">
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 0.9rem;
+                    color: #eee;
+                    line-height: 1.4;
+                  "
+                >
+                  456 Espresso Ave,<br />
+                  Brew Town, City 67890
+                </p>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=456+Espresso+Ave+Brew+Town"
+                  target="_blank"
+                  style="
+                    color: var(--accent);
+                    font-size: 0.85rem;
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                    font-weight: bold;
+                  "
+                >
+                  <span>📍</span> View on Google Maps
+                </a>
+              </div>
+              <div style="flex: 1; min-width: 180px; margin-bottom: 15px">
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 0.9rem;
+                    color: #eee;
+                    line-height: 1.4;
+                  "
+                >
+                  789 Latte Lane,<br />
+                  Foam District, City 11223
+                </p>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=789+Latte+Lane+Foam+District"
+                  target="_blank"
+                  style="
+                    color: var(--accent);
+                    font-size: 0.85rem;
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin-top: 5px;
+                    font-weight: bold;
+                  "
+                >
+                  <span>📍</span> View on Google Maps
+                </a>
+              </div>
+            </div>
           </div>
         </aside>
       </div>
     </div>
-
+    <div class="marquee-container">
+      <marquee
+        behavior="scroll"
+        direction="left"
+        scrollamount="12"
+        class="cool-marquee"
+      >
+        BROWN COFFEE • PREMIUM ROAST • FRESH BREW • BEST QUALITY • SINCE 2024 •
+        BROWN COFFEE • PREMIUM ROAST • FRESH BREW • BEST QUALITY
+      </marquee>
+    </div>
     <!--here-->
     <main>
       <div class="moto-gallery product-card">
         <!-- Added class "img-container" here -->
         <div class="img-container">
-          <span class="badge hot-sale">HOT</span>
+          <span class="badge discount-badge">50% OFF</span>
           <img src="./Matcha.jpg" alt="Moto" />
         </div>
 
@@ -172,7 +244,8 @@
       </div>
 
       <div class="moto-gallery product-card">
-        <div>
+        <div class="img-container">
+          <span class="badge hot-sale">HOT</span>
           <img src="./matcha stt.jpg" alt="Moto" />
         </div>
 
@@ -186,7 +259,7 @@
       <div class="moto-gallery product-card">
         <!-- Added class "img-container" here -->
         <div class="img-container">
-          <span class="badge hot-sale">HOT</span>
+          <span class="badge discount-badge">50% OFF</span>
           <img src="./ice latte.jpg" alt="Moto" />
         </div>
 
@@ -198,7 +271,8 @@
         </button>
       </div>
       <div class="moto-gallery product-card">
-        <div>
+        <div class="img-container">
+          <span class="badge hot-sale">BEST SELLER</span>
           <img src="./americano coffee.jpg" alt="Moto" />
         </div>
 

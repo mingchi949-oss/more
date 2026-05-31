@@ -70,6 +70,31 @@ function updateCartUI() {
 // Load the cart display automatically when the order page opens
 updateCartUI();
 
+// --- Form Persistence Logic ---
+// Load saved values from localStorage on page load
+const phoneInput = document.getElementById("customerPhone");
+const locationInput = document.getElementById("customerLocation");
+const paymentInput = document.getElementById("paymentMethod");
+
+if (phoneInput) phoneInput.value = localStorage.getItem("savedPhone") || "";
+if (locationInput)
+  locationInput.value = localStorage.getItem("savedLocation") || "";
+if (paymentInput)
+  paymentInput.value =
+    localStorage.getItem("savedPayment") || "Cash on Delivery";
+
+// Add listeners to save values to localStorage whenever they change
+phoneInput?.addEventListener("input", () =>
+  localStorage.setItem("savedPhone", phoneInput.value),
+);
+locationInput?.addEventListener("input", () =>
+  localStorage.setItem("savedLocation", locationInput.value),
+);
+paymentInput?.addEventListener("change", () =>
+  localStorage.setItem("savedPayment", paymentInput.value),
+);
+// ------------------------------
+
 // Handle the checkout submit
 document
   .getElementById("checkoutForm")
@@ -87,6 +112,7 @@ document
 
     const phone = document.getElementById("customerPhone").value;
     const location = document.getElementById("customerLocation").value;
+    const paymentMethod = document.getElementById("paymentMethod").value;
     const photoFile = document.getElementById("customerPhoto")?.files[0];
 
     // 1. Build the list text loop for Telegram
@@ -104,6 +130,7 @@ document
       `🚨 *NEW COFFEE ORDER* 🚨\n\n` +
       `📞 *Phone:* ${phone}\n` +
       `📍 *Location:* ${location}\n\n` +
+      `💳 *Payment:* ${paymentMethod}\n\n` +
       `🛍️ *Items Ordered:*\n${itemsText}\n` +
       `💰 *Total Bill:* $${totalCost.toFixed(2)}\n` +
       `⏰ *Status:* Preparing...`;
@@ -139,6 +166,11 @@ document
       .then((response) => {
         if (response.ok) {
           localStorage.removeItem("coffeeCart");
+          // Clear saved form data after successful order
+          localStorage.removeItem("savedPhone");
+          localStorage.removeItem("savedLocation");
+          localStorage.removeItem("savedPayment");
+
           // Send total items count and names to the next page
           window.location.href = `success.html?done=true`;
         } else {

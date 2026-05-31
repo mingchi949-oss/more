@@ -201,7 +201,7 @@ body {
 .badge {
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 10px;
   background-color: #ff3838; /* Vibrant red/orange hot color */
   color: white;
   padding: 4px 10px;
@@ -214,9 +214,17 @@ body {
   z-index: 10;
 }
 
-/* Optional: Flame icon effect using CSS if you want it spicy */
-.hot-sale::before {
-  content: "🔥 ";
+.discount-badge {
+  background-color: #f1c40f !important; /* Bright Yellow for Sale */
+  color: #000 !important;
+  left: 10px;
+  right: auto;
+}
+
+/* Style for the HOT badge */
+.hot-sale {
+  background-color: #e74c3c !important; /* Vibrant Red */
+  color: #fff !important;
 }
 /* Show class for JS */
 .show {
@@ -536,4 +544,22 @@ button {
 }
 .order-btn:hover {
   background-color: #218838;
+}
+
+/* Cool Marquee Styles */
+.marquee-container {
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 2px 0;
+  margin: 2px 0;
+  backdrop-filter: blur(5px);
+}
+.cool-marquee {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  color: var(--accent);
+  text-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
 }
