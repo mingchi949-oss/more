@@ -101,11 +101,11 @@ body {
   display: flex;
   gap: 40px;
   padding: 40px;
-  max-width: 1200px; /* Increased for better laptop viewing */
+  max-width: 760px;
   margin: 0 auto;
 }
 .brand-sidebar {
-  width: 280px; /* Fixed wide width to a standard sidebar size */
+  width: 700px;
   border-right: 0px solid #ffffff;
   padding-right: 20px;
   flex-shrink: 0;
@@ -245,8 +245,7 @@ main {
   border: 1px solid var(--border);
   padding: 20px;
   border-radius: 20px;
-  width: 100%; /* Take full width of container */
-  max-width: 350px; /* But don't exceed this size on laptops */
+  width: 400px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   backdrop-filter: blur(5px);
 }
@@ -412,8 +411,7 @@ main {
   border: 1px solid #333;
   padding: 20px;
   border-radius: 10px;
-  width: 100%;
-  max-width: 320px;
+  width: 300px;
 }
 
 .product-card img {
@@ -555,9 +553,7 @@ button {
   border-bottom: 1px solid var(--border);
   padding: 2px 0;
   margin: 2px 0;
-  backdrop-filter: blur(
-    2px /* Reduced for better mobile performance */
-  ); /* This is heavy on mobile; consider removing if lag persists */
+  backdrop-filter: blur(5px);
   overflow: hidden;
   white-space: nowrap;
   display: flex;
