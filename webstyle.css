@@ -101,11 +101,11 @@ body {
   display: flex;
   gap: 40px;
   padding: 40px;
-  max-width: 760px;
+  max-width: 1200px; /* Increased for better laptop viewing */
   margin: 0 auto;
 }
 .brand-sidebar {
-  width: 700px;
+  width: 280px; /* Fixed wide width to a standard sidebar size */
   border-right: 0px solid #ffffff;
   padding-right: 20px;
   flex-shrink: 0;
@@ -245,7 +245,8 @@ main {
   border: 1px solid var(--border);
   padding: 20px;
   border-radius: 20px;
-  width: 400px;
+  width: 100%; /* Take full width of container */
+  max-width: 350px; /* But don't exceed this size on laptops */
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   backdrop-filter: blur(5px);
 }
@@ -411,7 +412,8 @@ main {
   border: 1px solid #333;
   padding: 20px;
   border-radius: 10px;
-  width: 300px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .product-card img {
@@ -553,13 +555,30 @@ button {
   border-bottom: 1px solid var(--border);
   padding: 2px 0;
   margin: 2px 0;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(
+    2px /* Reduced for better mobile performance */
+  ); /* This is heavy on mobile; consider removing if lag persists */
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
 }
 .cool-marquee {
+  display: inline-block;
   font-size: 1.5rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 10px;
   color: var(--accent);
   text-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+  animation: marquee-scroll 20s linear infinite;
+  will-change: transform; /* Tells the browser to use the GPU */
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
