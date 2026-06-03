@@ -101,6 +101,9 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true; // Prevent multiple clicks for "one click" reliability
+
     if (cart.length === 0) {
       alert("Please add at least one item to your cart before ordering!");
       return;
@@ -125,6 +128,10 @@ document
       itemsText += `☕ ${item.qty}x *${item.name}* (${item.sugar || "100%"}) - $${cost.toFixed(2)}\n`;
     });
 
+    const orderSummary = cart
+      .map((item) => `${item.qty}x ${item.name}`)
+      .join(", ");
+
     // 2. Create the Telegram text string
     const message =
       `🚨 *NEW COFFEE ORDER* 🚨\n\n` +
@@ -135,6 +142,13 @@ document
       `💰 *Total Bill:* $${totalCost.toFixed(2)}\n` +
       `⏰ *Status:* Preparing...`;
 
+    // Define the confirmation button
+    const replyMarkup = {
+      inline_keyboard: [
+        [{ text: "✅ Confirm Order", callback_data: `confirm_${phone}` }],
+      ],
+    };
+
     let telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
     let requestOptions = {
       method: "POST",
@@ -143,6 +157,7 @@ document
         chat_id: chatId,
         text: message,
         parse_mode: "Markdown",
+        reply_markup: replyMarkup,
       }),
     };
 
@@ -154,6 +169,7 @@ document
       formData.append("photo", photoFile);
       formData.append("caption", message);
       formData.append("parse_mode", "Markdown");
+      formData.append("reply_markup", JSON.stringify(replyMarkup));
 
       requestOptions = {
         method: "POST",
@@ -163,22 +179,25 @@ document
 
     // 3. Send the entire order to Telegram
     fetch(telegramUrl, requestOptions)
-      .then((response) => {
-        if (response.ok) {
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) {
           localStorage.removeItem("coffeeCart");
           // Clear saved form data after successful order
           localStorage.removeItem("savedPhone");
           localStorage.removeItem("savedLocation");
           localStorage.removeItem("savedPayment");
 
-          // Send total items count and names to the next page
-          window.location.href = `success.html?done=true`;
+          // Redirect to the pending page to wait for admin confirmation
+          window.location.href = `pending.html?phone=${encodeURIComponent(phone)}&summary=${encodeURIComponent(orderSummary)}`;
         } else {
           alert("Something went wrong with the connection. Please try again.");
+          if (submitBtn) submitBtn.disabled = false;
         }
       })
       .catch((error) => {
         console.error("Error:", error);
         alert("Network error.");
+        if (submitBtn) submitBtn.disabled = false;
       });
   });

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Order Status</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --accent: #00ffcc;
+        --bg: #0a0a0a;
+        --card: rgba(255, 255, 255, 0.03);
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        text-align: center;
+        margin: 0;
+        background-color: var(--bg);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .box {
+        background: var(--card);
+        border: 1px solid rgba(0, 255, 204, 0.2);
+        padding: 50px 40px;
+        border-radius: 24px;
+        max-width: 400px;
+        width: 90%;
+      }
+      .box {
+        background: var(--card);
+        border: 1px solid rgba(0, 255, 204, 0.2);
+        padding: 50px 40px;
+        border-radius: 24px;
+        backdrop-filter: blur(
+          10px
+        ); /* Added for consistency with pending.html */
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); /* Added for consistency with pending.html */
+        animation: slideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Added for consistency with pending.html */
+      }
+      /* Keyframes for slideUp animation (copied from pending.html for consistency) */
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      h1 {
+        color: var(--accent);
+        font-weight: 900;
+        margin-bottom: 20px;
+      }
+      p {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: var(--accent);
+        color: #000;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 12px;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+      }
+      .check-icon {
+        /* Added check-icon style for the confirmation checkmark */
+        font-size: 5rem;
+        margin-bottom: 20px;
+        display: block;
+        color: var(--accent); /* Use accent color for the checkmark */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span class="check-icon">✅</span>
+      <!-- Display a checkmark icon -->
+      <h1 id="confirmation-title">Order Confirmed!</h1>
+      <p id="confirmation-message">
+        Your order has been successfully confirmed by the shop owner. We are now
+        preparing your delicious coffee!
+      </p>
+      <p
+        id="order-summary-display"
+        style="
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.6);
+          margin-top: -15px;
+          margin-bottom: 25px;
+        "
+      ></p>
+      <a href="./web.html" class="btn">Back to Home</a>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const phone = urlParams.get("phone");
+        const summary = urlParams.get("summary");
+
+        const orderSummaryDisplay = document.getElementById(
+          "order-summary-display",
+        );
+
+        if (summary) {
+          orderSummaryDisplay.innerHTML = `Order Summary: <strong>${decodeURIComponent(summary)}</strong>`;
+        } else {
+          orderSummaryDisplay.innerText = "Order details not available.";
+        }
+      });
+    </script>
+  </body>
+</html>
