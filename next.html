@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Order Status</title>
+    <title>Order Confirm</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
       rel="stylesheet"
@@ -93,10 +93,10 @@
     <div class="box">
       <span class="check-icon">✅</span>
       <!-- Display a checkmark icon -->
-      <h1 id="confirmation-title">Order Confirmed!</h1>
+      <h1 id="confirmation-title">Order Confirm</h1>
       <p id="confirmation-message">
-        Your order has been successfully confirmed by the shop owner. We are now
-        preparing your delicious coffee!
+        Thank you for your order! Your purchase is complete, and we're now
+        preparing your delicious coffee.
       </p>
       <p
         id="order-summary-display"
@@ -107,7 +107,7 @@
           margin-bottom: 25px;
         "
       ></p>
-      <a href="./web.html" class="btn">Back to Home</a>
+      <a href="./web.html" class="btn">Continue Shopping</a>
     </div>
 
     <script>
@@ -116,12 +116,15 @@
         const phone = urlParams.get("phone");
         const summary = urlParams.get("summary");
 
+        console.log("next.html - Phone from URL:", phone);
+        console.log("next.html - Summary from URL:", summary);
         const orderSummaryDisplay = document.getElementById(
           "order-summary-display",
         );
 
         if (summary) {
-          orderSummaryDisplay.innerHTML = `Order Summary: <strong>${decodeURIComponent(summary)}</strong>`;
+          // urlParams.get already decodes the string. Don't decode it again.
+          orderSummaryDisplay.innerHTML = `Order for <strong>${phone || "Customer"}</strong>: <br> ${summary}`;
         } else {
           orderSummaryDisplay.innerText = "Order details not available.";
         }

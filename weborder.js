@@ -142,26 +142,10 @@ document
       `💰 *Total Bill:* $${totalCost.toFixed(2)}\n` +
       `⏰ *Status:* Preparing...`;
 
-    // Define the confirmation button
-    const replyMarkup = {
-      inline_keyboard: [
-        [{ text: "✅ Confirm Order", callback_data: `confirm_${phone}` }],
-      ],
-    };
+    // 3. Send the order to Telegram
+    let telegramUrl;
+    let requestOptions;
 
-    let telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    let requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-        parse_mode: "Markdown",
-        reply_markup: replyMarkup,
-      }),
-    };
-
-    // If a photo is attached, use sendPhoto with FormData
     if (photoFile) {
       telegramUrl = `https://api.telegram.org/bot${botToken}/sendPhoto`;
       const formData = new FormData();
@@ -169,15 +153,20 @@ document
       formData.append("photo", photoFile);
       formData.append("caption", message);
       formData.append("parse_mode", "Markdown");
-      formData.append("reply_markup", JSON.stringify(replyMarkup));
-
+      requestOptions = { method: "POST", body: formData };
+    } else {
+      telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
       requestOptions = {
         method: "POST",
-        body: formData, // Browser sets Content-Type to multipart/form-data automatically
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown",
+        }),
       };
     }
 
-    // 3. Send the entire order to Telegram
     fetch(telegramUrl, requestOptions)
       .then((response) => response.json())
       .then((data) => {
@@ -188,7 +177,11 @@ document
           localStorage.removeItem("savedLocation");
           localStorage.removeItem("savedPayment");
 
-          // Redirect to the pending page to wait for admin confirmation
+          console.log(
+            "weborder.js - Redirecting to next.html with summary:",
+            orderSummary,
+          );
+          // Redirect to the pending page to allow checking receipt
           window.location.href = `pending.html?phone=${encodeURIComponent(phone)}&summary=${encodeURIComponent(orderSummary)}`;
         } else {
           alert("Something went wrong with the connection. Please try again.");

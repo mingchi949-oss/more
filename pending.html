@@ -91,6 +91,22 @@
         transform: scale(1.05);
         box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
       }
+      /* New style for the receipt button */
+      .receipt-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: #555; /* A darker grey for contrast */
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 12px;
+        transition: 0.3s;
+        margin-top: 10px; /* Space between buttons */
+      }
+      .receipt-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(85, 85, 85, 0.4);
+      }
     </style>
   </head>
   <body>
@@ -103,6 +119,8 @@
         contacted via Telegram or Phone shortly! This page will automatically
         redirect once your order is confirmed.
       </p>
+
+      <a href="#" id="check-receipt-btn" class="receipt-btn">Check</a>
     </div>
     <script src="./comfirm.js"></script>
   </body>
